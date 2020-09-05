@@ -27,25 +27,25 @@ def kayıt(ask = False): #kayıt fonksiyonu oluşturduk
 def cevap(voice): #cevap fn.u oluşturduk
     if 'nasılsın'  in voice:
         konus('Teşekkür ederim, sen nasılsın?' )
-    if 'iyiyim' in voice:
+    elif 'iyiyim' in voice:
         konus('Bunu duyduğuma sevindim')
-    if 'hasta' in voice:
+    elif 'hasta' in voice:
         konus('Geçmiş olsun! Senin için civardaki eczaneleri arıyorum')
         url1 = 'https://www.google.com/search?q=enyakineczane'
         webbrowser.get().open(url1)
-    if 'saat kaç' in voice:
+    elif 'saat kaç' in voice:
         konus('saat tam olarak' + datetime.now().strftime('%H %M'))
         print(datetime.now().strftime('%H %M'))
-    if 'arama yap' in voice:
+    elif 'arama yap' in voice:
         search = kayıt('Ne aramak istiyorsun?')
         url = 'https://google.com/search?q='+search
         webbrowser.get().open(url)
         konus(search + ' için bulduklarım')
-    if 'müzik' in voice:
+    elif 'müzik' in voice:
         konus('Elbette.Oynatma listenizi açıkıyorum')
         url2 = 'https://www.youtube.com/watch?v=UDVtMYqUAyw&list=PL0hLcSarbFFrRjuFdmq2gkQ0q_GWKL47S'
         webbrowser.get().open(url2)
-    if 'kapa' in voice:
+    elif 'kapa' in voice:
         count = int(datetime.now().strftime('%H'))
         if count > 9 and count < 18:
             konus('sistem kapatılıyor. iyi günler' )
@@ -56,11 +56,11 @@ def cevap(voice): #cevap fn.u oluşturduk
 
 def konus(string):
     tts =  gTTS(string,lang='tr')
-    rand = random.randint(1, 10000)
-    file = 'audio-'+str(rand)+'.mp3'
-    tts.save(file)
-    playsound(file)
-    os.remove(file)
+    rand = random.randint(1, 10000) #dosya isimlerinin çakışmaması için
+    file = 'audio-'+str(rand)+'.mp3' #dosya ismini belirledik
+    tts.save(file) # dosyayı kaydet
+    playsound(file) #sesi çal
+    os.remove(file) #dosya  okunduktan sonra silinsin
 
 konus("Hoşgeldin halit")
 
